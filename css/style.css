@@ -314,3 +314,10 @@ body{
     font-size: 1.1rem;
   }
   
+  /* Seccion de compras :,( */
+  #compras_section{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    color:  white;
+  }

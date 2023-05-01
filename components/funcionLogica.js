@@ -87,14 +87,14 @@ export function showCompras(buys) {
       
         // Validar que la cantidad ingresada sea mayor a cero
         if (cantidad <= 0) {
-          resultado.innerHTML = "La cantidad a vender debe ser mayor a cero.";
+            alert("Ups, parece que no te alcanza, asegurate de comprar mas cripto.");
           return;
         }
       
         // Verificar que la cantidad a restar no exceda el total pagado
         let totalPagado = parseFloat(resultado.innerText.substring(resultado.innerText.indexOf(":") + 1));
         if (cantidad > totalPagado) {
-          alert("Ups, parece que no te alcanza, asegurate de comprar mas cripto");
+          alert("Ups, parece que no te alcanza, asegurate de comprar mas cripto.");
           return;
         }
       

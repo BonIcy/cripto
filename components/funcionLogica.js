@@ -76,7 +76,7 @@ export function showCompras(buys) {
           totalComprasSpan = document.createElement("span");
           listaDatos.appendChild(totalComprasSpan);
         }
-        totalComprasSpan.innerHTML = "Total de dinero($) invertido: " + totalCompras;
+        totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras;
 
       }
       
@@ -115,7 +115,7 @@ export function showCompras(buys) {
           totalVentasSpan = document.createElement("span");
           listaDatos2.appendChild(totalVentasSpan);
         }
-        totalVentasSpan.innerHTML = " Total de dinero($) ganado por ventas: " + totalVentas;
+        totalVentasSpan.innerHTML = " Total($) ganado: " + totalVentas;
       }
       let restaBtn = document.querySelector("#btn-resta");
       restaBtn.addEventListener("click", restarValor);

@@ -6,6 +6,7 @@ async function getCompras() {
     let data = await result.json();
     console.log(data.Data);
     showCompras(data.Data);
+    grafica(data.Data)
   } catch (error) {
     console.log(error);
   }
@@ -90,7 +91,7 @@ export function showCompras(buys) {
       
         // Validar que la cantidad ingresada sea mayor a cero
         if (cantidad <= 0) {
-            alert("Ingresa un valor mayor a 0 para vender");
+          alert("Ingresa un valor mayor a 0 para vender");
           return;
         }
       
@@ -108,19 +109,64 @@ export function showCompras(buys) {
         // Calcular la suma de los valores de listaVentas
         let totalVentas = listaVentas.reduce((acc, curr) => acc + curr, 0);
       
+        // Calcular los porcentajes de cada valor en relación con la suma total
+        let porcentajes = listaVentas.map((venta) => (venta / totalVentas) * 100);
+      
+        // Actualizar la lista de datos con los porcentajes
+        let listaItems = "";
+        for (let i = 0; i < listaVentas.length; i++) {
+          listaItems += `<li>${listaVentas[i]} (${porcentajes[i].toFixed(2)}%)</li>`;
+        }
+        listaDatos2.innerHTML = listaItems;
+      
         // Actualizar el resultado total
         totalPagado -= cantidad;
         resultado.innerHTML = "Total pagado: " + totalPagado;
       
         // Actualizar el contenido del span con la suma de los valores
         let totalVentasSpan = listaDatos2.querySelector("span");
-        if (totalVentasSpan) {
+        if (!totalVentasSpan) {
           totalVentasSpan = document.createElement("span");
           listaDatos2.appendChild(totalVentasSpan);
         }
-        totalVentasSpan.innerHTML = " Total($) ganado: " + totalVentas;
+        totalVentasSpan.innerHTML = " Total($) ganado: " + totalVentas + " (100%)";
       }
+      
       let restaBtn = document.querySelector("#btn-resta");
       restaBtn.addEventListener("click", restarValor);
     }
+}
+export function grafica(){
+  const canvas = document.getElementById('myChart');
+  const ctx = canvas.getContext('2d');
+  const data = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+    datasets: [{
+      label: 'Ventas',
+      data: [12, 19, 3, 5, 2],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)'
+      ]
+    }]
+  };
+  const options = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  
+  const myChart = new Chart(ctx, options);
+  data.datasets[0].data = [10, 8, 15, 3, 7];
+  myChart.update();
+      
 }

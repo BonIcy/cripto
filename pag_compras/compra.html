@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"type="module" defer></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <script src="main.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
     <title>Cripto</title>
-</head>
-<body>
-    <img id="fondo"src="../img/fondoheader.jpg">
+  </head>
+  <body>
+    <img id="fondo" src="../img/fondoheader.jpg" />
     <div id="header">
-        <div id="title"></div>
-        <div id="cont"></div>
+      <div id="title"></div>
+      <div id="cont"></div>
     </div>
-    
-    <div id="compras_section" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-        <p>Compra de monedas</p>
-    <select  id="compras"></select>
-    <div id="pagos"></div>
-    <div class="btnSub"><button val="submit">Comprar</button></div>
-    </div>
-    <div class="operaciones" style="color: white;">
-        <h1 class="" style="color: white;">Compras</h1>
-        <div id="listaDatos"style="color:white;"></div>
-        <div id="resultado"></div>
-    </div>
-</body>
+    <section style="color: white;">
+        <h2>Compras</h2>
+        <label for="compras">Elige una criptomoneda:</label>
+        <select id="compras"></select>
+        <label for="pagos">Pago en USD:</label>
+        <div id="pagos"></div>
+        <button class="btnSub">Comprar</button>
+      </section>
+      <section style="color: white;">
+        <h2>Ventas</h2>
+        <label for="resta">Cantidad($) a vender:</label>
+        <input type="number" id="resta" />
+        <button id="btn-resta">Vender</button>
+      </section>
+      <section style="color: white;">
+        <h2>Datos de la transacción</h2>
+        <p style="font-weight: bolder; text-decoration: underline;"id="resultado"></p>
+        <div style="display: flex; justify-content: space-evenly;">
+        <ul id="listaDatos"><h1>Compras</h1><span></span></ul>
+        <ul id="listaDatos2"><h1>Ventas</h1><span></span></ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+  </body>
 </html>

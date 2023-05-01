@@ -83,7 +83,6 @@ export function showCompras(buys) {
           totalComprasSpan = document.createElement("span");
           listaDatos.appendChild(totalComprasSpan);
         }
-        console.log(porcentajes);
         totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras.toFixed(2) + " (100%)";
        document.querySelector("#btnGrafica").addEventListener("click", mostrarGrafica) 
        function mostrarGrafica() {
@@ -139,6 +138,7 @@ export function showCompras(buys) {
         let totalVentas = listaVentas.reduce((acc, curr) => acc + curr, 0);
       
         // Calcular los porcentajes de cada valor en relación con la suma total
+
         let porcentajes = listaVentas.map((venta) => (venta / totalVentas) * 100);
       
         // Actualizar la lista de datos con los porcentajes
@@ -150,7 +150,7 @@ export function showCompras(buys) {
       
         // Actualizar el resultado total
         totalPagado -= cantidad;
-        resultado.innerHTML = "Total pagado: " + totalPagado.toFixed(2);
+        resultado.innerHTML = "Total pagado: " + totalPagado;
       
         // Actualizar el contenido del span con la suma de los valores
         let totalVentasSpan = listaDatos2.querySelector("span");

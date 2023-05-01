@@ -7,6 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js" type="module" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+
+
     <link rel="stylesheet" href="../css/style.css" />
     <title>Cripto</title>
   </head>
@@ -34,12 +39,15 @@
         <h2>Datos de la transacción</h2>
         <p style="font-weight: bolder; text-decoration: underline;"id="resultado"></p>
         <div style="display: flex; justify-content: space-evenly;">
-        <div><h1>Compras</h1><ul id="listaDatos"><span></span></ul></div>
+        <div><h1>Compras</h1><ul id="listaDatos"><span></span></ul><button id="btnGrafica">
+          Mostrar gráfica(Compras)</button></div>
         <div><h1>Ventas</h1><ul id="listaDatos2"><span></span></ul></div>
         </div>
       </section>
       <section>
-        <canvas id="myChart"></canvas>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
       </section>
     </main>
   </body>

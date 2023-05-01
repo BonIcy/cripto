@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", getCompras);
 async function getCompras() {
   let url = "../storage/api.json";
@@ -6,7 +7,6 @@ async function getCompras() {
     let data = await result.json();
     console.log(data.Data);
     showCompras(data.Data);
-    grafica(data.Data)
   } catch (error) {
     console.log(error);
   }
@@ -63,16 +63,18 @@ export function showCompras(buys) {
         for (let i = 0; i < items.length; i++) {
           let itemText = items[i].innerText;
           let itemPrice = parseFloat(itemText.substring(itemText.indexOf(":") ));
+          
           total += itemPrice;
         }
         datos.push(valorTotal)
-        resultado.innerHTML = "Total pagado: " + total;
+        resultado.innerHTML = "Total pagado: " + total.toFixed(2);
         let totalCompras = datos.reduce((acc, curr) => acc + curr, 0);
         let totalComprasSpan = listaDatos.querySelector("span");
         // Calcular el porcentaje de cada valor en relación con la suma total
           let porcentajes = datos.map((dato) => (dato / totalCompras) * 100);
           // Actualizar la lista de datos con los porcentajes
           let listaItems = "";
+          
           for (let i = 0; i < datos.length; i++) {
             listaItems += `<li>${datos[i]} (${porcentajes[i].toFixed(2)}%)</li>`;
           }
@@ -81,7 +83,34 @@ export function showCompras(buys) {
           totalComprasSpan = document.createElement("span");
           listaDatos.appendChild(totalComprasSpan);
         }
-        totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras + " (100%)";
+        console.log(porcentajes);
+        totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras.toFixed(2) + " (100%)";
+       document.querySelector("#btnGrafica").addEventListener("click", mostrarGrafica) 
+       function mostrarGrafica() {
+        let canvas = document.querySelector('#myChart');
+        let context = canvas.getContext('2d');
+        let centerX = canvas.width / 2;
+        let centerY = canvas.height / 2;
+        let radius = Math.min(centerX, centerY) - 10;
+      
+        // Calcular el porcentaje de cada valor en relación con la suma total
+        let porcentajes = datos.map((dato) => (dato / totalCompras) * 100);
+      
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      
+        let startAngle = 0;
+        porcentajes.forEach((porcentaje, i) => {
+          let endAngle = startAngle + (porcentaje / 100) * Math.PI * 2;
+          context.beginPath();
+          context.moveTo(centerX, centerY);
+          context.arc(centerX, centerY, radius, startAngle, endAngle);
+          context.fillStyle = `hsl(${(i * 360) / porcentajes.length}, 70%, 50%)`;
+          context.fill();
+          context.closePath();
+          startAngle = endAngle;
+        });
+      }
+       
       }
       
       function restarValor() {
@@ -121,7 +150,7 @@ export function showCompras(buys) {
       
         // Actualizar el resultado total
         totalPagado -= cantidad;
-        resultado.innerHTML = "Total pagado: " + totalPagado;
+        resultado.innerHTML = "Total pagado: " + totalPagado.toFixed(2);
       
         // Actualizar el contenido del span con la suma de los valores
         let totalVentasSpan = listaDatos2.querySelector("span");
@@ -129,44 +158,12 @@ export function showCompras(buys) {
           totalVentasSpan = document.createElement("span");
           listaDatos2.appendChild(totalVentasSpan);
         }
-        totalVentasSpan.innerHTML = " Total($) ganado: " + totalVentas + " (100%)";
+        totalVentasSpan.innerHTML = " Total($) ganado: " + totalVentas.toFixed(2) + " (100%)";
       }
       
       let restaBtn = document.querySelector("#btn-resta");
       restaBtn.addEventListener("click", restarValor);
     }
-}
-export function grafica(){
-  const canvas = document.getElementById('myChart');
-  const ctx = canvas.getContext('2d');
-  const data = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [{
-      label: 'Ventas',
-      data: [12, 19, 3, 5, 2],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)'
-      ]
-    }]
-  };
-  const options = {
-    type: 'bar',
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  };
-  
-  const myChart = new Chart(ctx, options);
-  data.datasets[0].data = [10, 8, 15, 3, 7];
-  myChart.update();
-      
+/*     let btng = document.querySelector("#btnGrafica")
+    btng.addEventListener("click", crearGrafica) */
 }

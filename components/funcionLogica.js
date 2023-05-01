@@ -87,7 +87,7 @@ export function showCompras(buys) {
       
         // Validar que la cantidad ingresada sea mayor a cero
         if (cantidad <= 0) {
-            alert("Ups, parece que no te alcanza, asegurate de comprar mas cripto.");
+            alert("Ingresa un valor mayor a 0 para vender");
           return;
         }
       

@@ -91,6 +91,13 @@ export function showCompras(buys) {
           return;
         }
       
+        // Verificar que la cantidad a restar no exceda el total pagado
+        let totalPagado = parseFloat(resultado.innerText.substring(resultado.innerText.indexOf(":") + 1));
+        if (cantidad > totalPagado) {
+          alert("Ups, parece que no te alcanza, asegurate de comprar mas cripto");
+          return;
+        }
+      
         // Actualizar la lista de datos
         listaVentas.push(cantidad);
         listaDatos2.innerHTML += "<li>" + cantidad + "</li>";
@@ -99,9 +106,8 @@ export function showCompras(buys) {
         let totalVentas = listaVentas.reduce((acc, curr) => acc + curr, 0);
       
         // Actualizar el resultado total
-        let total = parseFloat(resultado.innerText.substring(resultado.innerText.indexOf(":") + 1));
-        total -= cantidad;
-        resultado.innerHTML = "Total pagado (Descontando ventas): " + total;
+        totalPagado -= cantidad;
+        resultado.innerHTML = "Total pagado: " + totalPagado;
       
         // Actualizar el contenido del span con la suma de los valores
         let totalVentasSpan = listaDatos2.querySelector("span");
@@ -111,7 +117,6 @@ export function showCompras(buys) {
         }
         totalVentasSpan.innerHTML = " Total de dinero($) ganado por ventas: " + totalVentas;
       }
-      
       let restaBtn = document.querySelector("#btn-resta");
       restaBtn.addEventListener("click", restarValor);
       

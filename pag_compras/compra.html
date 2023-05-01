@@ -29,7 +29,7 @@
         <div id="pagos"></div>
         <button class="btnSub">Comprar</button>
       </section>
-      <section style="color: white;">
+      <section id="sct"style="color: white;">
         <h2>Ventas</h2>
         <label for="resta">Cantidad($) a vender:</label>
         <input type="number" id="resta" />
@@ -39,14 +39,14 @@
         <h2>Datos de la transacción</h2>
         <p style="font-weight: bolder; text-decoration: underline;"id="resultado"></p>
         <div style="display: flex; justify-content: space-evenly;">
-        <div><h1>Compras</h1><ul id="listaDatos"><span></span></ul><button id="btnGrafica">
-          Mostrar gráfica(Compras)</button></div>
-        <div><h1>Ventas</h1><ul id="listaDatos2"><span></span></ul></div>
+        <div><h1>Compras</h1>
+          <ul id="listaDatos"><span></span></ul>
+          <button id="btnGrafica">Mostrar gráfica(Compras)</button>
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
         </div>
-      </section>
-      <section>
-        <div>
-          <canvas id="myChart"></canvas>
+        <div><h1>Ventas</h1><ul id="listaDatos2"><span></span></ul></div>
         </div>
       </section>
     </main>

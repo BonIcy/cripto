@@ -323,3 +323,115 @@ body{
     align-items: center;
     color:  white;
   }
+  /* Estilos para el select */
+#compras {
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  color: #555;
+  font-size: 16px;
+  padding: 8px;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Estilos para la flecha */
+#compras::after {
+  content: '\25BC';
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Estilos para cuando el select está activo */
+#compras:focus {
+  border-color: #3f0a49;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+#compras:focus::after {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+/* Estilos para cuando se selecciona una opción */
+#compras option:checked {
+  background-color: #2a1641;
+  color: #fff;
+}
+
+/* Estilos para la animación al abrir el select */
+#compras.open {
+  height: auto;
+}
+
+#compras.open option {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#compras option {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.btnSub {
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color de texto */
+  border: 2px solid #4CAF50; /* Borde */
+  padding: 10px 24px; /* Padding */
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer; /* Cursor al pasar el mouse */
+  transition-duration: 0.4s; /* Duración de la animación */
+  border-radius: 20px;
+}
+
+#btnSub:hover {
+  background-color: white; /* Color de fondo al pasar el mouse */
+  color: #4CAF50; /* Color de texto al pasar el mouse */
+  border: 2px solid #4CAF50; /* Borde al pasar el mouse */
+}
+
+#btn-resta {
+  background-color: #943c4b; /* Color de fondo */
+  color: white; /* Color de texto */
+  border: 2px solid rgb(88, 22, 17); /* Borde */
+  padding: 10px 24px; /* Padding */
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer; /* Cursor al pasar el mouse */
+  transition-duration: 0.4s; /* Duración de la animación */
+  border-radius: 20px;
+}
+
+#btn-resta:hover {
+  background-color: rgb(255, 255, 255); /* Color de fondo al pasar el mouse */
+  color: rgb(88, 22, 17); /* Color de texto al pasar el mouse */
+  border: 2px solid rgb(88, 22, 17); /* Borde al pasar el mouse */
+}
+
+
+  #btnGrafica {
+    background-color: #c96dc4; /* Color de fondo del botón */
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: .9rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.5s ease; /* Define la animación de transición */
+  }
+
+  #btnGrafica:hover {
+    background-color: #571451; /* Cambia el color de fondo al pasar el mouse por encima */
+    color: rgb(255, 255, 255);
+  }

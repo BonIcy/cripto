@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", getCompras);
-
 async function getCompras() {
   let url = "../storage/api.json";
   try {
@@ -38,7 +37,7 @@ export function showCompras(buys) {
     valor += `<p>Precio: $${valorTotal}<p>`;
     pagos.innerHTML = valor;
   }
-  function almacenar(event) {
+  function almacenar() {
     let pregunta = confirm("¿Estás seguro/a de querer comprar?");
     if (pregunta == true) {
       alert("Comprado uwuwuwuw");
@@ -54,11 +53,9 @@ export function showCompras(buys) {
         if (cripto == "") {
           resultado.innerHTML = "Debes seleccionar una criptomoneda.";
           return;
-        }
-      
+        } 
         // Actualizar la lista de datos
-        listaDatos.innerHTML += "<li>"  + valorTotal +   "</li>";
-      
+        listaDatos.innerHTML += "<li>"  + valorTotal +   "</li>";   
         // Actualizar el resultado total
         let total = 0;
         let items = listaDatos.querySelectorAll("li");
@@ -68,16 +65,22 @@ export function showCompras(buys) {
           total += itemPrice;
         }
         datos.push(valorTotal)
-        console.log(datos)
         resultado.innerHTML = "Total pagado: " + total;
         let totalCompras = datos.reduce((acc, curr) => acc + curr, 0);
         let totalComprasSpan = listaDatos.querySelector("span");
-        if (!totalComprasSpan) {
+        // Calcular el porcentaje de cada valor en relación con la suma total
+          let porcentajes = datos.map((dato) => (dato / totalCompras) * 100);
+          // Actualizar la lista de datos con los porcentajes
+          let listaItems = "";
+          for (let i = 0; i < datos.length; i++) {
+            listaItems += `<li>${datos[i]} (${porcentajes[i].toFixed(2)}%)</li>`;
+          }
+          listaDatos.innerHTML = listaItems; 
+        if (totalComprasSpan) {
           totalComprasSpan = document.createElement("span");
           listaDatos.appendChild(totalComprasSpan);
         }
-        totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras;
-
+        totalComprasSpan.innerHTML = "Total($) invertido: " + totalCompras + " (100%)";
       }
       
       function restarValor() {
@@ -111,7 +114,7 @@ export function showCompras(buys) {
       
         // Actualizar el contenido del span con la suma de los valores
         let totalVentasSpan = listaDatos2.querySelector("span");
-        if (!totalVentasSpan) {
+        if (totalVentasSpan) {
           totalVentasSpan = document.createElement("span");
           listaDatos2.appendChild(totalVentasSpan);
         }
@@ -119,8 +122,5 @@ export function showCompras(buys) {
       }
       let restaBtn = document.querySelector("#btn-resta");
       restaBtn.addEventListener("click", restarValor);
-      
-      
     }
-
 }

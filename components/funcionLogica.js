@@ -84,25 +84,30 @@ export function showCompras(buys) {
        document.querySelector("#btnGrafica").addEventListener("click", mostrarGrafica) 
        function mostrarGrafica() {
         let canvas = document.querySelector('#myChart');
-        let context = canvas.getContext('2d');
-        let centerX = canvas.width / 2;
-        let centerY = canvas.height / 2;
-        let radius = Math.min(centerX, centerY) - 10;
+    let context = canvas.getContext('2d');
+    let centerX = canvas.width / 2;
+    let centerY = canvas.height / 2;
+    let radius = Math.min(centerX, centerY) - 10;
+    let labels =[];
+    let data = datos.map((dato) => (dato / totalCompras) * 100);
+    let backgroundColor = ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(255, 206, 86, 0.8)'];
+    let myChart = new Chart(context, {
       
-        //Lo mismo de los porcentajes, segun la suma total siendo esta el 100%
-        let porcentajes = datos.map((dato) => (dato / totalCompras) * 100);
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        let startAngle = 0;
-        porcentajes.forEach((porcentaje, i) => {
-          let endAngle = startAngle + (porcentaje / 100) * Math.PI * 2;
-          context.beginPath();
-          context.moveTo(centerX, centerY);
-          context.arc(centerX, centerY, radius, startAngle, endAngle);
-          context.fillStyle = `hsl(${(i * 360) / porcentajes.length}, 70%, 50%)`;
-          context.fill();
-          context.closePath();
-          startAngle = endAngle;
-        });
+      type: 'doughnut',
+      data: {
+        labels: [],
+        datasets: [{
+          data: data,
+          backgroundColor: backgroundColor
+        }]
+      },
+      options: {
+        responsive: true,
+        legend: {
+          position: 'right'
+        }
+      }
+    });
       }
        
       }

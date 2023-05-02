@@ -24,7 +24,10 @@
     <section style="color: white;">
         <h2>Compras</h2>
         <label for="compras">Elige una criptomoneda:</label>
+        
         <select id="compras"></select>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" style="width: 3rem;" name="cantidad" min="1" value="1"><br>
         <label for="pagos">Pago en USD:</label>
         <div id="pagos"></div>
         <button class="btnSub">Comprar</button>
@@ -32,7 +35,7 @@
       <section id="sct"style="color: white;">
         <h2>Ventas</h2>
         <label for="resta">Cantidad($) a vender:</label>
-        <input type="number" id="resta" />
+        <input type="number" id="resta" min="1" value="1">
         <button id="btn-resta">Vender</button>
       </section>
       <section style="color: white;">

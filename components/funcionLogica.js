@@ -25,13 +25,16 @@ export function showCompras(buys) {
   let valorTotal = 0;
   let datos = [];
   let listaVentas = [];
-  cont.addEventListener(`input`, showPrice);
+  cont.addEventListener(`change`, showPrice);
+  let cantttt= document.querySelector("#cantidad")
+  cantttt.addEventListener(`input`, showPrice)
   let almac = document.querySelector(".btnSub");
   almac.addEventListener("click", almacenar);
 
   function showPrice() {
     let pagos = document.querySelector("#pagos");
-    valorTotal = parseFloat(cont.value);
+    let cantidad = parseFloat(document.querySelector("#cantidad").value);
+    valorTotal = cantidad * parseFloat(cont.value);
     let valor = "";
     valor += `<p>Precio: $${valorTotal}<p>`;
     pagos.innerHTML = valor;
